@@ -20,6 +20,8 @@ class NewsViewController: UIViewController {
         
         self.configureUI()
         self.configureClosures()
+        self.viewModel.fetchNews {[weak self] in
+        }
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
