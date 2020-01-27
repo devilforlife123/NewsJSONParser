@@ -42,14 +42,56 @@ class NewsViewController: UIViewController {
     }
     
     func configureClosures(){
+        
+        viewModel.showAlert = { [weak self]
+                     (message) in
+                   GCD.runOnMainThread {
+                       self?.showAlert(message: message)
+                   }
+                 }
+                 
+                 viewModel.dataUpdated = {
+                     [weak self] in
+                   GCD.runOnMainThread {
+                       self?.tableView.reloadData()
+                   }
+                 }
+                 
+                 viewModel.titleTextConfigured = {
+                     [weak self] text in
+                   GCD.runOnMainThread {
+                       self?.title = text
+                   }
+                 }
+                 
            
     }
-
-    override func viewDidLayoutSubviews() {
-      super.viewDidLayoutSubviews()
-      tableView.frame = view.bounds
-      activityIndicatorView.center = tableView.center
-    }
+    private func showAlert(title: String = "NewsApp", message: String?) {
+              let alertController = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
+              let okAction = UIAlertAction(title:NSLocalizedString("OK", comment: ""), style: UIAlertAction.Style.default) {(action) in
+              }
+              alertController.addAction(okAction)
+              present(alertController, animated: true, completion: nil)
+       }
+       
+       @objc func refreshTableView(){
+            viewModel.newsArray = []
+              activityIndicatorView.startAnimating()
+                 viewModel.fetchNews {[weak self] in
+                   GCD.runOnMainThread {
+                       self?.activityIndicatorView.stopAnimating()
+                       print("Search Completed")
+                   }
+             }
+                 
+          }
+    
+    
+       override func viewDidLayoutSubviews() {
+         super.viewDidLayoutSubviews()
+         tableView.frame = view.bounds
+         activityIndicatorView.center = tableView.center
+       }
 
 
 }
@@ -57,11 +99,13 @@ class NewsViewController: UIViewController {
 extension NewsViewController:UITableViewDelegate,UITableViewDataSource{
 
 func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return 1
+     return viewModel.newsArray.count
 }
 
 func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
      let cell = tableView.dequeueReusableCell(withIdentifier: "NewsAppCell", for: indexPath) as! NewsAppCell
+    let newsModel = viewModel.newsArray[indexPath.row]
+    cell.model = NewsModel.init(withNews:newsModel)
       return cell
     }
 }

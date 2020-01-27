@@ -11,9 +11,28 @@ import UIKit
 
 class NewsViewModel:NSObject{
     
-      
+  var newsArray = [NewsArticle]()
+  var showAlert:((String)->())?
+  var dataUpdated:(()->())?
+  var titleTextConfigured:((String)->())?
+         
     func fetchNews(completion:@escaping()->()){
         self.request { (news) in
+            switch news{
+            case .Success(let news):
+                if let news = news{
+                    self.titleTextConfigured?(news.title!)
+                    self.newsArray.append(contentsOf: news.newsArticle ?? [])
+                    self.dataUpdated?()
+                }
+                completion()
+            case .Failure(let message):
+                self.showAlert?(message)
+                completion()
+            case .Error(let error):
+                self.showAlert?(error)
+                completion()
+            }
         }
        
     }

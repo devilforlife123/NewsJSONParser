@@ -23,6 +23,7 @@
 		D69916FF23DF62F400A44066 /* News.swift in Sources */ = {isa = PBXBuildFile; fileRef = D69916FE23DF62F400A44066 /* News.swift */; };
 		D699170123DF630800A44066 /* NewsArticle.swift in Sources */ = {isa = PBXBuildFile; fileRef = D699170023DF630800A44066 /* NewsArticle.swift */; };
 		D699170323DF633300A44066 /* GCD.swift in Sources */ = {isa = PBXBuildFile; fileRef = D699170223DF633300A44066 /* GCD.swift */; };
+		D699170523DF66B400A44066 /* NewsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D699170423DF66B400A44066 /* NewsModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,6 +70,7 @@
 		D69916FE23DF62F400A44066 /* News.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = News.swift; sourceTree = "<group>"; };
 		D699170023DF630800A44066 /* NewsArticle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsArticle.swift; sourceTree = "<group>"; };
 		D699170223DF633300A44066 /* GCD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GCD.swift; sourceTree = "<group>"; };
+		D699170423DF66B400A44066 /* NewsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsModel.swift; sourceTree = "<group>"; };
 		E22F1FDAA1DE2F9D6CB4980D /* Pods-NewsJSONParserTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NewsJSONParserTests.debug.xcconfig"; path = "Target Support Files/Pods-NewsJSONParserTests/Pods-NewsJSONParserTests.debug.xcconfig"; sourceTree = "<group>"; };
 		EB6F873E66BA8B48FF2541B3 /* Pods-NewsJSONParser.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NewsJSONParser.debug.xcconfig"; path = "Target Support Files/Pods-NewsJSONParser/Pods-NewsJSONParser.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -202,6 +204,7 @@
 				D69916F823DF613200A44066 /* NetworkManager.swift */,
 				D69916FE23DF62F400A44066 /* News.swift */,
 				D699170023DF630800A44066 /* NewsArticle.swift */,
+				D699170423DF66B400A44066 /* NewsModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -482,6 +485,7 @@
 				D69916FF23DF62F400A44066 /* News.swift in Sources */,
 				D69916FB23DF62BD00A44066 /* Reachability.swift in Sources */,
 				D699170123DF630800A44066 /* NewsArticle.swift in Sources */,
+				D699170523DF66B400A44066 /* NewsModel.swift in Sources */,
 				D69916F923DF613200A44066 /* NetworkManager.swift in Sources */,
 				D69916FD23DF62D100A44066 /* Result.swift in Sources */,
 				D69916F723DF5FEF00A44066 /* NewsAppCell.swift in Sources */,
