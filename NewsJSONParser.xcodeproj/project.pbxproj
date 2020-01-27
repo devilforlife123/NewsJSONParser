@@ -154,7 +154,6 @@
 			isa = PBXGroup;
 			children = (
 				D69916F323DEFEE000A44066 /* Assets */,
-				D69916F223DEFEB300A44066 /* ViewControllers */,
 				D69916F123DEFE8700A44066 /* Others */,
 				D69916F023DEFE7B00A44066 /* Storyboards & Xibs */,
 				D69916EF23DEFE7700A44066 /* Models */,
@@ -228,13 +227,6 @@
 				D699170623DF67F300A44066 /* UIImage+Extensions.swift */,
 			);
 			path = Others;
-			sourceTree = "<group>";
-		};
-		D69916F223DEFEB300A44066 /* ViewControllers */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ViewControllers;
 			sourceTree = "<group>";
 		};
 		D69916F323DEFEE000A44066 /* Assets */ = {
