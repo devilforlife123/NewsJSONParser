@@ -20,8 +20,15 @@ class NewsViewController: UIViewController {
         
         self.configureUI()
         self.configureClosures()
-        self.viewModel.fetchNews {[weak self] in
-        }
+         self.activityIndicatorView.startAnimating()
+            self.viewModel.fetchNews {[weak self] in
+                   GCD.runOnMainThread {
+               self?.navigationItem.rightBarButtonItem?.isEnabled = true
+                                                      self?.activityIndicatorView.stopAnimating()
+                                                      print("Search Completed")
+                       }
+           
+               }
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -37,6 +44,8 @@ class NewsViewController: UIViewController {
         self.view.addSubview(tableView)
         tableView.register(NewsAppCell.classForCoder(), forCellReuseIdentifier: "NewsAppCell")
         tableView.addSubview(activityIndicatorView)
+        refreshBarButton = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(refreshTableView))
+        refreshBarButton.tintColor = UIColor.black
         navigationItem.rightBarButtonItem = refreshBarButton
         navigationItem.rightBarButtonItem?.isEnabled = false
     }
@@ -74,17 +83,17 @@ class NewsViewController: UIViewController {
               present(alertController, animated: true, completion: nil)
        }
        
-       @objc func refreshTableView(){
-            viewModel.newsArray = []
-              activityIndicatorView.startAnimating()
-                 viewModel.fetchNews {[weak self] in
-                   GCD.runOnMainThread {
-                       self?.activityIndicatorView.stopAnimating()
-                       print("Search Completed")
-                   }
+        @objc func refreshTableView(){
+               viewModel.newsArray = []
+                 activityIndicatorView.startAnimating()
+                    viewModel.fetchNews {[weak self] in
+                      GCD.runOnMainThread {
+                          self?.activityIndicatorView.stopAnimating()
+                          print("Search Completed")
+                      }
+                }
+                    
              }
-                 
-          }
     
     
        override func viewDidLayoutSubviews() {
