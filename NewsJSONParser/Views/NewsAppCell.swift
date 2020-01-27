@@ -14,6 +14,7 @@ class NewsAppCell:UITableViewCell{
     var newsImage:UIImageView = UIImageView()
     var newsHeadline:UILabel = UILabel()
     var newsDescription:UILabel = UILabel()
+    var downloadTask: URLSessionDownloadTask?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -68,10 +69,17 @@ class NewsAppCell:UITableViewCell{
         newsDescription.textColor = UIColor.black
     }
     
+    override func prepareForReuse() {
+        newsImage.image = nil
+        downloadTask?.cancel()
+        downloadTask = nil
+    }
+    
     var model:NewsModel?{
            didSet{
                if let model = model{
                 self.newsImage.image = UIImage(named: "placeholder")!
+                self.downloadTask = self.newsImage.downloadImage(from:model.imageURL)
                 self.newsHeadline.text = {
                     
                     let headline = model.title != "" ? model.title:"No headline"
