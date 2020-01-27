@@ -1,0 +1,6 @@
+framework module Pods_NewsJSONParser {
+  umbrella header "Pods-NewsJSONParser-umbrella.h"
+
+  export *
+  module * { export * }
+}
